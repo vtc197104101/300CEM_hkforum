@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Login"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/hknight"
+        android:scaleType="centerCrop"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="50dp">
+        android:layout_gravity="center_vertical"
+        android:padding="10dp"
+        android:orientation="vertical"
+ >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".Login"
+    android:alpha="0.9"
+    android:padding="10dp"
+    android:background="@drawable/layout_bg"
+    >
+
         <TextView
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HK Forum"
-            android:textSize="40dp"
-            android:fontFamily="sans-serif-thin"/>
-    </LinearLayout>
+            android:textSize="50dp"
+            android:fontFamily="sans-serif-condensed-light"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
         android:layout_marginTop="20dp"
         >
         <com.google.android.material.textfield.TextInputLayout
@@ -31,12 +46,14 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:hint="email"
+
             android:layout_height="wrap_content"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -51,27 +68,32 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
     <Button
         android:id="@+id/Login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#FFF"
-        android:text="Login">
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_bg"
+        android:text="Login"
+        android:textColor="#fff">
 
     </Button>
     <Button
         android:layout_marginTop="5dp"
         android:id="@+id/Register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#FFF"
+        android:background="@drawable/button_bg2"
         android:text="Register">
 
     </Button>
 </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/hknight"
+        android:id="@+id/welcome_bg"
+        android:scaleType="centerCrop"/>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
     android:orientation="vertical"
     tools:context=".CheckGPS">
     <TextView
@@ -16,55 +24,75 @@
         android:layout_height="wrap_content"
         android:text="Welcome!"
         android:textSize="50dp"
-        android:textColor="#000"
-        android:fontFamily="sans-serif-thin"></TextView>
+        android:textColor="#FFF"
+        android:fontFamily="sans-serif-light"></TextView>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#FFF"
-    android:padding="3dp">
+    android:alpha="0.8"
+    android:background="#000"
+    android:layout_marginTop="10dp"
+    android:padding="15dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Status:"
-        android:textSize="20dp"
-        android:textColor="#000"/>
-    <TextView
+        android:layout_gravity="center"
+        android:text="Your Location Status"
+        android:textSize="25dp"
+        android:textColor="#FFF"
+        />
+    <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#FFF"
         android:text="Latitude:"/>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#FFF"
+        android:text="Longitude:"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/latitude_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFF"
         android:text="latitude"
+        android:layout_weight="1"
         android:textIsSelectable="true"
         android:textSize="16sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Longitude:"/>
 
     <TextView
         android:id="@+id/longitude_text"
         android:layout_width="wrap_content"
+        android:textColor="#FFF"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="longitude"
         android:textIsSelectable="true"
         android:textSize="16sp"/>
-
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFF"
         android:text="Time:"/>
 
     <TextView
         android:id="@+id/time_text"
         android:layout_width="wrap_content"
+        android:textColor="#FFF"
         android:layout_height="wrap_content"
         android:text="time"
         android:textIsSelectable="true"
@@ -73,22 +101,38 @@
 
     <TextView
         android:id="@+id/output"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="#FFF"
         android:gravity="top"
         android:text="output area"/>
 
 </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#000"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:alpha="0.8">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/redirect"
         android:layout_gravity="center"
-        android:id="@+id/redirect"></TextView>
+        android:text="location"
+        android:textColor="#FFF"></TextView>
+    </LinearLayout>
     <Button
         android:id="@+id/start"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_bg"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFF"
         android:text="@string/button_start"></Button>
 </LinearLayout>
+</FrameLayout>

@@ -15,6 +15,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CheckGPS extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
-
+    public String a;
     public static int REQUEST_LOCATION = 1;
 
     // member views
@@ -40,6 +41,7 @@ public class CheckGPS extends AppCompatActivity implements GoogleApiClient.Conne
     protected TextView mOutput;
     protected TextView mTarget;
     protected Button start;
+    protected ImageView bg;
     // member variables that hold location info
     protected GoogleApiClient mGoogleApiClient;
     protected Location mLastLocation;
@@ -50,14 +52,15 @@ public class CheckGPS extends AppCompatActivity implements GoogleApiClient.Conne
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_gps);
+        bg = (ImageView)findViewById(R.id.welcome_bg);
         start = (Button)findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mGoogleApiClient.disconnect();
 
                 Intent intent = new Intent(CheckGPS.this,MainActivity.class);
-                startActivity(intent);            }
+                startActivity(intent);
+            }
         });
         start.setEnabled(false);
         // initialize views
@@ -168,12 +171,22 @@ public class CheckGPS extends AppCompatActivity implements GoogleApiClient.Conne
         }
     }
 public void checking(String CL, String C){
-
+        Bundle args = new Bundle();
+        args.putString("key",CL);
+        HomeFragment.putA(args);
     if (C.equals("HK")){
         mTarget.setText("You will go to " + CL + " forum.");
         start.setEnabled(true);
+        if (CL.equals("Hong Kong Island")){
+            bg.setImageResource(R.drawable.hki);
+        }else if (CL.equals("Kowloon")){
+            bg.setImageResource(R.drawable.kowloon);
+        } else {
+            bg.setImageResource(R.drawable.nt);
+        }
     } else {
         mTarget.setText("You are not in Hong Kong!");
+        bg.setImageResource(R.drawable.hknight);
         start.setEnabled(false);
     }
 }
