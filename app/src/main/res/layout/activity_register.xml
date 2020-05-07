@@ -43,13 +43,13 @@
                 >
                 <com.google.android.material.textfield.TextInputLayout
 
-                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:hint="username"
                     android:layout_height="wrap_content"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -58,14 +58,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
 
-                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:hint="email"
-
                     android:layout_height="wrap_content"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -73,7 +72,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -82,6 +80,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
+                        android:id="@+id/password"
+
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
                         />

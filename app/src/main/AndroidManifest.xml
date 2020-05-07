@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckGPS"></activity>
+        <activity android:name=".addReply"></activity>
+        <activity android:name=".post_detail" />
+        <activity android:name=".addPost" />
+        <activity android:name=".CheckGPS" />
         <activity android:name=".register" />
         <activity android:name=".MainActivity" />
         <activity
