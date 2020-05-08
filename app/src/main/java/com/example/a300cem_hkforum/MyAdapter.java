@@ -61,6 +61,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time * 1000);
         String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        Long tsLong = System.currentTimeMillis();
+        String today = DateFormat.format("dd-MM-yyyy", tsLong).toString();
+        if (date.equals(today)){
+            date = "Today";
+        }
         return date;
     }
 

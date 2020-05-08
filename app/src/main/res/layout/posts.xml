@@ -11,27 +11,26 @@
         >
     <TextView
         android:textColor="@color/colorPrimary"
-        android:textSize="20dp"
+        android:textSize="23dp"
         android:layout_gravity="left"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="23313131321"/>
+        android:text="Title"/>
 
 
 
     <TextView
-        android:textColor="@color/colorPrimary"
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3123"/>
+        android:text="username"/>
     <TextView
         android:layout_gravity="right"
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="42342"></TextView>
+        android:text="date"></TextView>
 
 
     </LinearLayout>

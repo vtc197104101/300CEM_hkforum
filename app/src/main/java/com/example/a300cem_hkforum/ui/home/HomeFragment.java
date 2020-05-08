@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
     TextView CL;
     ImageView BG;
     Button newPost;
+    Button refresh;
     RecyclerView rv;
     private List<Post> listData;
     private MyAdapter adapter;
@@ -65,6 +66,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -73,6 +75,35 @@ public class HomeFragment extends Fragment {
         CL = (TextView)root.findViewById(R.id.CL);
         BG = (ImageView)root.findViewById(R.id.forum_bg);
         rv = (RecyclerView)root.findViewById(R.id.rv);
+        refresh = (Button)root.findViewById(R.id.reFresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("posts").child(currentLocation);
+            listData=new ArrayList<>();
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        for (DataSnapshot npsnapshot : dataSnapshot.getChildren()){
+                            Post l = npsnapshot.getValue(Post.class);
+                            listData.add(l);
+                        }
+                        Collections.reverse(listData);
+                        adapter=new MyAdapter(listData);
+                        rv.setAdapter(adapter);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            }
+        });
         newPost = (Button) root.findViewById(R.id.newPost);
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override

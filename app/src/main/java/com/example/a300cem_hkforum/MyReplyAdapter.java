@@ -54,9 +54,17 @@ public class MyReplyAdapter extends RecyclerView.Adapter<MyReplyAdapter.ViewHold
         }
     }
     private String getDate(long time) {
+        String replyDate;
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time * 1000);
+        Long tsLong = System.currentTimeMillis();
+        String today = DateFormat.format("dd-MM-yyyy", tsLong).toString();
         String date = DateFormat.format("dd-MM-yyyy", cal).toString();
-        return date;
+        if (date.equals(today)){
+            replyDate = "Today"+DateFormat.format(" HH:MM", cal).toString();
+        } else {
+            replyDate =  DateFormat.format("dd-MM-yyyy HH:MM", cal).toString();
+        }
+        return replyDate;
     }
 }

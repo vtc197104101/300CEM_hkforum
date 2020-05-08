@@ -29,66 +29,30 @@
             android:text="Back"
             android:textSize="15dp"
             android:textColor="#FFF"></Button>
+        <Button
+            android:id="@+id/replyButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_bg2"
+            android:text="+"
+            android:textSize="20dp"
+            android:textColor="#FFF"></Button>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#F1F3F4"
-        android:padding="20dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:padding="10dp"
+        android:orientation="vertical"
+        >
 
-            android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-       ><TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#0"></TextView>
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="username"
-                android:id="@+id/strUsername"
-                android:textColor="#f16666"></TextView>
-
-        </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/strTime"
-                android:gravity="right"
-                android:text="time"></TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:id="@+id/strContent"
-                android:textColor="#000"
-                android:text="testing"></TextView>
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"></LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reply_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
-        <Button
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:background="#000"
-            android:id="@+id/replyButton"
-            android:text="New Reply"></Button>
+            android:layout_height="match_parent"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
+
 </LinearLayout>
