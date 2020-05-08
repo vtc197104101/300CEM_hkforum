@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,15 +59,20 @@ public class addPost extends AppCompatActivity {
         push.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Long tsLong = System.currentTimeMillis()/1000;
-                ts = tsLong.toString();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("posts").child(CL).child(ts);
-                myRef.child("title").setValue(title.getText().toString());
-                myRef.child("content").setValue(content.getText().toString());
-                myRef.child("timestamp").setValue(ts);
-                myRef.child("user").setValue(username);
-                finish();
+                if (title.getText().length() == 0 || content.getText().length() == 0){
+                    Toast.makeText(addPost.this, "Error!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Long tsLong = System.currentTimeMillis()/1000;
+                    ts = tsLong.toString();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("posts").child(CL).child(ts);
+                    myRef.child("title").setValue(title.getText().toString());
+                    myRef.child("content").setValue(content.getText().toString());
+                    myRef.child("timestamp").setValue(ts);
+                    myRef.child("user").setValue(username);
+                    Toast.makeText(addPost.this, "Posted!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

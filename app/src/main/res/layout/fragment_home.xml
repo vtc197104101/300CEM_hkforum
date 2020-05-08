@@ -19,14 +19,7 @@
         android:textColor="#fff"
         android:textSize="20dp"
         android:id="@+id/CL"></TextView>
-    <Button
-        android:id="@+id/reFresh"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/button_bg2"
-        android:text="Refresh"
-        android:textSize="15dp"
-        android:textColor="#FFF"></Button>
+
     <Button
         android:id="@+id/newPost"
         android:layout_width="30dp"

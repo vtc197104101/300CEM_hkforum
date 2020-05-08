@@ -45,15 +45,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends Fragment {
     static String currentLocation;
-
     TextView CL;
     ImageView BG;
     Button newPost;
-    Button refresh;
     RecyclerView rv;
     private List<Post> listData;
     private MyAdapter adapter;
@@ -66,68 +63,9 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        CL = (TextView)root.findViewById(R.id.CL);
-        BG = (ImageView)root.findViewById(R.id.forum_bg);
-        rv = (RecyclerView)root.findViewById(R.id.rv);
-        refresh = (Button)root.findViewById(R.id.reFresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("posts").child(currentLocation);
-            listData=new ArrayList<>();
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()){
-                        for (DataSnapshot npsnapshot : dataSnapshot.getChildren()){
-                            Post l = npsnapshot.getValue(Post.class);
-                            listData.add(l);
-                        }
-                        Collections.reverse(listData);
-                        adapter=new MyAdapter(listData);
-                        rv.setAdapter(adapter);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-            }
-        });
-        newPost = (Button) root.findViewById(R.id.newPost);
-        newPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), addPost.class);
-                intent.putExtra("CL",currentLocation);
-                startActivity(intent);
-            }
-        });
-        CL.setText(currentLocation);
-        if(currentLocation.equals("Hong Kong Island")){
-            BG.setImageResource(R.drawable.hki);
-        } else if (currentLocation.equals("Kowloon")){
-            BG.setImageResource(R.drawable.kowloon);
-        } else {
-            BG.setImageResource(R.drawable.nt);
-        }
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        homeViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+    @Override
+    public void onResume() {
+        super.onResume();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("posts").child(currentLocation);
         rv.setHasFixedSize(true);
@@ -173,8 +111,44 @@ public class HomeFragment extends Fragment {
                     }
                 })
         );
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        CL = (TextView)root.findViewById(R.id.CL);
+        BG = (ImageView)root.findViewById(R.id.forum_bg);
+        rv = (RecyclerView)root.findViewById(R.id.rv);
+        newPost = (Button) root.findViewById(R.id.newPost);
+        newPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), addPost.class);
+                intent.putExtra("CL",currentLocation);
+                startActivity(intent);
+            }
+        });
+        CL.setText(currentLocation);
+        if(currentLocation.equals("Hong Kong Island")){
+            BG.setImageResource(R.drawable.hki);
+        } else if (currentLocation.equals("Kowloon")){
+            BG.setImageResource(R.drawable.kowloon);
+        } else {
+            BG.setImageResource(R.drawable.nt);
+        }
+//        final TextView textView = root.findViewById(R.id.text_home);
+//        homeViewModel.getText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+
         return root;
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

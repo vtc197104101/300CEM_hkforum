@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -81,17 +82,23 @@ public class addReply extends AppCompatActivity {
         pushR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Long tsLong = System.currentTimeMillis()/1000;
-                ts = tsLong.toString();
-                int intReplys = Math.toIntExact(numOfReplys);
-                String strReplys = Integer.toString(intReplys+1);
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("posts").child(CL).child(PostID).child("replys").child(strReplys);
-                myRef.child("content").setValue(contentR.getText().toString());
-                myRef.child("timestamp").setValue(ts);
-                myRef.child("ID").setValue(strReplys);
-                myRef.child("user").setValue(username);
-                finish();
+                if(contentR.getText().length() == 0 ){
+                    Toast.makeText(addReply.this, "Please enter something!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(addReply.this, "Replied!", Toast.LENGTH_SHORT).show();
+                    Long tsLong = System.currentTimeMillis()/1000;
+                    ts = tsLong.toString();
+                    int intReplys = Math.toIntExact(numOfReplys);
+                    String strReplys = Integer.toString(intReplys+1);
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("posts").child(CL).child(PostID).child("replys").child(strReplys);
+                    myRef.child("content").setValue(contentR.getText().toString());
+                    myRef.child("timestamp").setValue(ts);
+                    myRef.child("ID").setValue(strReplys);
+                    myRef.child("user").setValue(username);
+                    finish();
+                }
+
             }
         });
     }

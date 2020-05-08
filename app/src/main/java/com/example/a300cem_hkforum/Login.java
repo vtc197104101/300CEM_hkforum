@@ -34,10 +34,9 @@ public class Login extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    Intent intent = new Intent(Login.this,CheckGPS.class);
-                    startActivity(intent);
+                if (email.getText().length()==0 || password.getText().length() ==0) {
+                    Toast.makeText(Login.this, "Error.",
+                            Toast.LENGTH_SHORT).show();
                     // User is signed in
                 } else {
                 mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())

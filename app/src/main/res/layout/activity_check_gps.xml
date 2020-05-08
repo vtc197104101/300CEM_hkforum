@@ -43,7 +43,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:alpha="0.8"
+    android:alpha="0.9"
     android:background="#000"
     android:layout_marginTop="10dp"
     android:padding="15dp">
@@ -61,13 +61,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="#FFF"
         android:text="Latitude:"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="#FFF"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content">
     <TextView
         android:id="@+id/latitude_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="#FFF"
         android:text="latitude"
@@ -88,7 +88,7 @@
 
     <TextView
         android:id="@+id/longitude_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:textColor="#FFF"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -129,7 +129,7 @@
         android:background="#000"
         android:orientation="vertical"
         android:padding="20dp"
-        android:alpha="0.8">
+        android:alpha="0.9">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

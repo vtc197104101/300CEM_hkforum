@@ -48,34 +48,39 @@ public class register extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(Username.getText().length() == 0 || Email.getText().length()==0 || Password.getText().length() ==0){
+                    Toast.makeText(register.this, "Error.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    mAuth.createUserWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
+                            .addOnCompleteListener(register.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Long tsLong = System.currentTimeMillis()/1000;
+                                        ts = tsLong.toString();
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference myRef = database.getReference("users").child(user.getUid());
+                                        myRef.child("username").setValue(Username.getText().toString());
+                                        myRef.child("email").setValue(Email.getText().toString());
+                                        myRef.child("date").setValue(ts);
+                                        Log.d(TAG, "createUserWithEmail:success");
+                                        Toast.makeText(register.this, "Register success!",
+                                                Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(register.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
 
-                mAuth.createUserWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
-                        .addOnCompleteListener(register.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Long tsLong = System.currentTimeMillis()/1000;
-                                    ts = tsLong.toString();
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    DatabaseReference myRef = database.getReference("users").child(user.getUid());
-                                    myRef.child("username").setValue(Username.getText().toString());
-                                    myRef.child("email").setValue(user.getEmail());
-                                    myRef.child("date").setValue(ts);
-                                    Log.d(TAG, "createUserWithEmail:success");
-                                    Toast.makeText(register.this, "Register success!",
-                                            Toast.LENGTH_SHORT).show();
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(register.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    // ...
                                 }
+                            });
 
-                                // ...
-                            }
-                        });
+                }
 
             }
         });
