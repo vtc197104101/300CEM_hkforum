@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
         android:background="#000">
+        <Button
+            android:id="@+id/backk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:layout_centerVertical="true"
 
+            android:textColor="#FFF"></Button>
 
         <TextView
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Reply"
+            android:text="@string/newreply"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:textColor="#fff"
             android:textSize="20dp"
             android:id="@+id/CL"></TextView>
 
-        <Button
-            android:id="@+id/backk"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
-            android:background="@drawable/button_bg2"
-            android:text="Back"
-            android:textSize="15dp"
-            android:textColor="#FFF"></Button>
+
         <Button
             android:id="@+id/pushReply"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/button_bg2"
             android:text="+"
             android:textSize="20dp"
             android:textColor="#FFF"></Button>
@@ -54,7 +55,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Content"
+                android:hint="@string/content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="clear_text"
+
                 >
 
                 <com.google.android.material.textfield.TextInputEditText

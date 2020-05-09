@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
         android:background="#000">
-
-
-        <TextView
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Post"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:id="@+id/CL"></TextView>
 
         <Button
             android:id="@+id/back"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
-            android:background="@drawable/button_bg2"
-            android:text="Back"
-            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/back"
             android:textColor="#FFF"></Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newpost"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/CL"></TextView>
         <Button
             android:id="@+id/push"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/button_bg2"
-            android:text="+"
             android:textSize="20dp"
+            android:layout_centerVertical="true"
+
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="+"
             android:textColor="#FFF"></Button>
     </RelativeLayout>
     <LinearLayout
@@ -53,7 +52,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="@string/title"
+        app:endIconMode="clear_text"
+        app:counterEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:counterMaxLength="20"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -66,8 +69,11 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+        app:endIconMode="clear_text"
         android:layout_height="wrap_content"
-        android:hint="Content"
+        android:hint="@string/content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
         >
 
         <com.google.android.material.textfield.TextInputEditText

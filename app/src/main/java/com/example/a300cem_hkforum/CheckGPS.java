@@ -3,12 +3,15 @@ package com.example.a300cem_hkforum;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -29,6 +32,9 @@ import com.google.android.gms.location.LocationServices;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class CheckGPS extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     public String a;
@@ -50,19 +56,57 @@ public class CheckGPS extends AppCompatActivity implements GoogleApiClient.Conne
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_gps);
+        Executor executor = Executors.newSingleThreadExecutor();
+
+        FragmentActivity activity = this;
+        final BiometricPrompt biometricPrompt = new BiometricPrompt(activity, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                    // user clicked negative button
+                } else {
+                }
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Intent intent = new Intent(CheckGPS.this,MainActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle(getString(R.string.login))
+                .setDescription(getString(R.string.finger))
+                .setNegativeButtonText(getString(R.string.back))
+                .build();
+
+
         bg = (ImageView)findViewById(R.id.welcome_bg);
         start = (Button)findViewById(R.id.start);
+        start.setText(R.string.button_start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(CheckGPS.this,MainActivity.class);
-                startActivity(intent);
+                biometricPrompt.authenticate(promptInfo);
+
+
             }
         });
-        start.setEnabled(false);
+        start.setVisibility(View.GONE);
         // initialize views
         mLatitudeText = (TextView) findViewById((R.id.latitude_text));
         mLongitudeText = (TextView) findViewById((R.id.longitude_text));
@@ -70,11 +114,6 @@ public class CheckGPS extends AppCompatActivity implements GoogleApiClient.Conne
         mTarget = (TextView) findViewById(R.id.redirect);
         mOutput = (TextView) findViewById((R.id.output));
 
-        // below are placeholder values used when the app doesn't have the permission
-        mLatitudeText.setText("Latitude not available yet");
-        mLongitudeText.setText("Longitude not available yet");
-        mTimeText.setText("Time not available yet");
-        mOutput.setText("");
 
         // GoogleApiClient allows to connect to remote services, the two listeners are the first
         // two interfaces the current class implements
@@ -170,13 +209,24 @@ public class CheckGPS extends AppCompatActivity implements GoogleApiClient.Conne
             mOutput.setText("WARNING! Geocoder.getFromLocation() didn't work!");
         }
     }
+
 public void checking(String CL, String C){
+        String CLname;
+        CLname = CL;
+        if(CL.equals("香港島")){
+            CL = "Hong Kong Island";
+        } else if (CL.equals("九龍")){
+            CL = "Kowloon";
+        } else if (CL.equals("新界")){
+            CL = "New Territories";
+        }
         Bundle args = new Bundle();
         args.putString("key",CL);
+        args.putString("name",CLname);
         HomeFragment.putA(args);
     if (C.equals("HK")){
-        mTarget.setText("You will go to " + CL + " forum.");
-        start.setEnabled(true);
+        mTarget.setText(getString(R.string.will)+" "+ CLname + " "+ getString(R.string.title_forum));
+        start.setVisibility(View.VISIBLE);
         if (CL.equals("Hong Kong Island")){
             bg.setImageResource(R.drawable.hki);
         }else if (CL.equals("Kowloon")){
@@ -185,9 +235,9 @@ public void checking(String CL, String C){
             bg.setImageResource(R.drawable.nt);
         }
     } else {
-        mTarget.setText("You are not in Hong Kong!");
+        mTarget.setText(getString(R.string.notHongKong));
         bg.setImageResource(R.drawable.hknight);
-        start.setEnabled(false);
+        start.setVisibility(View.GONE);
     }
 }
 

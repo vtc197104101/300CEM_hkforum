@@ -49,7 +49,7 @@ public class register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Username.getText().length() == 0 || Email.getText().length()==0 || Password.getText().length() ==0){
-                    Toast.makeText(register.this, "Error.",
+                    Toast.makeText(register.this, getString(R.string.fail),
                             Toast.LENGTH_SHORT).show();
                 } else {
                     mAuth.createUserWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
@@ -66,13 +66,13 @@ public class register extends AppCompatActivity {
                                         myRef.child("email").setValue(Email.getText().toString());
                                         myRef.child("date").setValue(ts);
                                         Log.d(TAG, "createUserWithEmail:success");
-                                        Toast.makeText(register.this, "Register success!",
+                                        Toast.makeText(register.this, getString(R.string.success),
                                                 Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(register.this, "Authentication failed.",
+                                        Toast.makeText(register.this, getString(R.string.fail),
                                                 Toast.LENGTH_SHORT).show();
                                     }
 

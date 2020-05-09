@@ -1,6 +1,8 @@
 package com.example.a300cem_hkforum.ui.dashboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -17,8 +19,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.a300cem_hkforum.Login;
+import com.example.a300cem_hkforum.MainActivity;
 import com.example.a300cem_hkforum.R;
 import com.example.a300cem_hkforum.edit_username;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.dialog.MaterialDialogs;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -101,11 +106,13 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+
         currentUsername = (TextView)root.findViewById(R.id.currentUsername);
         currentEmail = (TextView)root.findViewById(R.id.currentUserEmail);
         creDate = (TextView)root.findViewById(R.id.createDate);
         logout = (Button)root.findViewById(R.id.logout);
         setUsername = (Button)root.findViewById(R.id.setusernameB);
+
         setUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

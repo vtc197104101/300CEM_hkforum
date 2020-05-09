@@ -5,31 +5,30 @@
     android:orientation="vertical"
     android:background="#F1F3F4"
     android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:background="#000">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000">
     <TextView
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CL"
         android:textColor="#fff"
         android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:id="@+id/CL"></TextView>
 
     <Button
         android:id="@+id/newPost"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="@drawable/button_bg2"
         android:text="+"
         android:textSize="20dp"
         android:textColor="#FFF"></Button>
-</RelativeLayout>
+    </RelativeLayout>
     <ImageView
         android:id="@+id/forum_bg"
         android:layout_width="match_parent"
@@ -40,6 +39,7 @@
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rv"
     android:layout_width="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_height="match_parent"
-    android:layout_marginBottom="50dp"></androidx.recyclerview.widget.RecyclerView>
+    ></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

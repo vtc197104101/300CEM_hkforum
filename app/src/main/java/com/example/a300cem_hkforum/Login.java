@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,6 +27,13 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(Login.this,CheckGPS.class);
+            startActivity(intent);
+            Toast.makeText(Login.this, getString(R.string.login) + user.getEmail(),
+                    Toast.LENGTH_SHORT).show();
+        }
         mAuth = FirebaseAuth.getInstance();
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
@@ -35,7 +43,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (email.getText().length()==0 || password.getText().length() ==0) {
-                    Toast.makeText(Login.this, "Error.",
+                    Toast.makeText(Login.this, getString(R.string.fail),
                             Toast.LENGTH_SHORT).show();
                     // User is signed in
                 } else {
@@ -46,14 +54,14 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
-                                    Toast.makeText(Login.this, "Login success!",
+                                    Toast.makeText(Login.this, getString(R.string.success),
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Login.this,CheckGPS.class);
                                     startActivity(intent);
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(Login.this, "Authentication failed.",
+                                    Toast.makeText(Login.this, getString(R.string.fail),
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

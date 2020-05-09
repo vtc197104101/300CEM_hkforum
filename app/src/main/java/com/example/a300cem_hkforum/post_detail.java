@@ -53,7 +53,7 @@ public class post_detail extends AppCompatActivity {
                         }
                         Reply f = new Reply(content, date, user, "0");
                         listData.add(0, f);
-                        adapter = new MyReplyAdapter(listData);
+                        adapter = new MyReplyAdapter(listData,post_detail.this);
                         rv.setAdapter(adapter);
 
                     }
@@ -70,6 +70,9 @@ public class post_detail extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -115,13 +118,13 @@ public class post_detail extends AppCompatActivity {
                     }
                     Reply f = new Reply(content, date, user, "0");
                     listData.add(0, f);
-                    adapter = new MyReplyAdapter(listData);
+                    adapter = new MyReplyAdapter(listData, post_detail.this);
                     rv.setAdapter(adapter);
 
                 } else {
                     Reply f = new Reply(content, date, user, "0");
                     listData.add(0, f);
-                    adapter = new MyReplyAdapter(listData);
+                    adapter = new MyReplyAdapter(listData, post_detail.this);
                     rv.setAdapter(adapter);
                 }
             }

@@ -1,5 +1,7 @@
 package com.example.a300cem_hkforum.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +34,8 @@ import com.example.a300cem_hkforum.RecyclerItemClickListener;
 import com.example.a300cem_hkforum.addPost;
 import com.example.a300cem_hkforum.post_detail;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +53,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     static String currentLocation;
+     static String CLname;
     TextView CL;
     ImageView BG;
     Button newPost;
@@ -55,10 +61,11 @@ public class HomeFragment extends Fragment {
     private List<Post> listData;
     private MyAdapter adapter;
 
-
     public static void putA(Bundle arg){
         String SCL = arg.getString("key");
+        String name = arg.getString("name");
         currentLocation = SCL;
+        CLname = name;
     }
 
     private HomeViewModel homeViewModel;
@@ -66,6 +73,15 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        CL.setText(CLname);
+
+        if(currentLocation.equals("Hong Kong Island")){
+            BG.setImageResource(R.drawable.hki);
+        } else if (currentLocation.equals("Kowloon")){
+            BG.setImageResource(R.drawable.kowloon);
+        } else {
+            BG.setImageResource(R.drawable.nt);
+        }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("posts").child(currentLocation);
         rv.setHasFixedSize(true);
@@ -81,7 +97,7 @@ public class HomeFragment extends Fragment {
                         listData.add(l);
                     }
                     Collections.reverse(listData);
-                    adapter=new MyAdapter(listData);
+                    adapter=new MyAdapter(listData, getActivity());
                     rv.setAdapter(adapter);
                 }
             }
@@ -91,26 +107,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        rv.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity(), rv,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        // do whatever
-                        Intent intent = new Intent(getActivity(), post_detail.class);
-                        intent.putExtra("title",listData.get(position).title);
-                        intent.putExtra("content",listData.get(position).content);
-                        intent.putExtra("time",listData.get(position).timestamp);
-                        intent.putExtra("user",listData.get(position).user);
-                        intent.putExtra("CL",currentLocation);
-                        startActivity(intent);
-                    }
 
-                    @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
-                        System.out.println("fuck android232");
-
-                    }
-                })
-        );
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -130,14 +127,31 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        CL.setText(currentLocation);
-        if(currentLocation.equals("Hong Kong Island")){
-            BG.setImageResource(R.drawable.hki);
-        } else if (currentLocation.equals("Kowloon")){
-            BG.setImageResource(R.drawable.kowloon);
-        } else {
-            BG.setImageResource(R.drawable.nt);
-        }
+        rv.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), rv,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        Intent intent = new Intent(getActivity(), post_detail.class);
+                        intent.putExtra("title",listData.get(position).title);
+                        intent.putExtra("content",listData.get(position).content);
+                        intent.putExtra("time",listData.get(position).timestamp);
+                        intent.putExtra("user",listData.get(position).user);
+                        intent.putExtra("CL",currentLocation);
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+
+                        MaterialAlertDialogBuilder a = new MaterialAlertDialogBuilder(getActivity(),R.style.AlertDialogTheme);
+                        a.setTitle(listData.get(position).title);
+                        a.setMessage(listData.get(position).content);
+                        a.setCancelable(true);
+                        a.show();
+
+                    }
+                })
+        );
 //        final TextView textView = root.findViewById(R.id.text_home);
 //        homeViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
@@ -145,7 +159,6 @@ public class HomeFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
-
         return root;
     }
 

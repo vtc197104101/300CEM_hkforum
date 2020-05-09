@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +31,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New account"
+                android:text="@string/newac"
                 android:textSize="20dp"
                 android:fontFamily="sans-serif-condensed-light"/>
             <LinearLayout
@@ -42,14 +41,18 @@
                 android:layout_marginTop="20dp"
                 >
                 <com.google.android.material.textfield.TextInputLayout
-
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
                     android:layout_width="match_parent"
-                    android:hint="username"
+                    android:hint="@string/username"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:endIconMode="clear_text"
                     android:layout_height="wrap_content"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/username"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
@@ -57,9 +60,10 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:hint="email"
+                    android:hint="@string/email"
+                    app:endIconMode="clear_text"
                     android:layout_height="wrap_content"
                     >
 
@@ -74,14 +78,18 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:endIconMode="password_toggle"
                     android:layout_marginTop="5dp"
-                    android:hint="password"
+                    android:hint="@string/password"
+                    app:helperTextEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:helperText="@string/pwhint"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:id="@+id/password"
-
+                        android:inputType="textPassword"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
                         />
@@ -91,11 +99,10 @@
             <Button
                 android:id="@+id/Register"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/button_bg"
-                android:text="Register"
+                android:text="@string/register"
                 android:textColor="#fff">
 
             </Button>
@@ -103,10 +110,9 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/Back"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:background="@drawable/button_bg2"
-                android:text="Back">
+                android:text="@string/back">
 
             </Button>
         </LinearLayout>

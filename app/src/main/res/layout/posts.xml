@@ -8,35 +8,47 @@
         android:orientation="vertical"
         android:padding="20dp"
         android:background="#fff"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         >
-    <TextView
-        android:textColor="@color/colorPrimary"
-        android:textSize="23dp"
-        android:layout_gravity="left"
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title"/>
-
-
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="username"/>
+
     <TextView
-        android:layout_gravity="right"
+        android:gravity="right"
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="date"></TextView>
+</LinearLayout>
+
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"/>
+
+
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"></LinearLayout>
+        android:layout_height="5dp"
+></LinearLayout>
 </LinearLayout>
 

@@ -32,6 +32,7 @@ public class addReply extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reply);
         mAuth = FirebaseAuth.getInstance();
@@ -83,9 +84,9 @@ public class addReply extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(contentR.getText().length() == 0 ){
-                    Toast.makeText(addReply.this, "Please enter something!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addReply.this,getString(R.string.blank), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(addReply.this, "Replied!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addReply.this, getString(R.string.reply), Toast.LENGTH_SHORT).show();
                     Long tsLong = System.currentTimeMillis()/1000;
                     ts = tsLong.toString();
                     int intReplys = Math.toIntExact(numOfReplys);

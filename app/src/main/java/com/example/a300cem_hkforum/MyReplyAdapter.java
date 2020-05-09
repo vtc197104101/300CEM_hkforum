@@ -1,5 +1,6 @@
 package com.example.a300cem_hkforum;
 
+import android.content.Context;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,11 @@ import java.util.Locale;
 
 public class MyReplyAdapter extends RecyclerView.Adapter<MyReplyAdapter.ViewHolder>{
     private List<Reply> listData;
+    private Context context;
 
-    public MyReplyAdapter(List<Reply> listData) {
+    public MyReplyAdapter(List<Reply> listData, Context context) {
         this.listData = listData;
+        this.context = context;
     }
 
     @NonNull
@@ -61,7 +64,7 @@ public class MyReplyAdapter extends RecyclerView.Adapter<MyReplyAdapter.ViewHold
         String today = DateFormat.format("dd-MM-yyyy", tsLong).toString();
         String date = DateFormat.format("dd-MM-yyyy", cal).toString();
         if (date.equals(today)){
-            replyDate = "Today"+DateFormat.format(" HH:MM", cal).toString();
+            replyDate = context.getString(R.string.today) + DateFormat.format(" HH:MM", cal).toString();
         } else {
             replyDate =  DateFormat.format("dd-MM-yyyy HH:MM", cal).toString();
         }

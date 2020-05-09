@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">香港論壇</string>
+    <string name="button_start">開始</string>
+    <string name="title_forum">論壇</string>
+    <string name="title_setting">設定</string>
+    <string name="gps_ststus">位置資訊</string>
+    <string name="latitude">緯度</string>
+    <string name="longitude">經度</string>
+    <string name="time">時間</string>
+    <string name="welcome">歡迎</string>
+    <string name="username">用户名</string>
+    <string name="email">電子郵件</string>
+    <string name="password">密碼</string>
+    <string name="login">登錄</string>
+    <string name="register">注冊</string>
+    <string name="setting">設定</string>
+    <string name="newpost">新增帖子</string>
+    <string name="newreply">新增回覆</string>
+    <string name="back">返回</string>
+    <string name="content">內容</string>
+    <string name="title">標題</string>
+    <string name="newusername">設置用户名</string>
+    <string name="logout">登出</string>
+    <string name="localrecord">本地記錄</string>
+    <string name="lang">語言</string>
+    <string name="today">今日</string>
+    <string name="success">成功</string>
+    <string name="will">你將會去到</string>
+    <string name="fail">失敗</string>
+    <string name="pwhint">至少6位數字。</string>
+    <string name="notHongKong">你不在香港！</string>
+    <string name="newac">用戶註冊</string>
+    <string name="finger">使用指紋登錄</string>
+    <string name="reply">回覆成功！</string>
+    <string name="blank">請輸入內容！</string>
+</resources>

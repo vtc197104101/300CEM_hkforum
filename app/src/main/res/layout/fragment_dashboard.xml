@@ -13,9 +13,10 @@
         android:background="#000">
         <TextView
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Setting"
+            android:text="@string/setting"
             android:textColor="#fff"
             android:textSize="20dp"
            ></TextView>
@@ -29,7 +30,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
@@ -60,30 +60,25 @@
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Set username"
+        android:layout_height="60dp"
+        android:text="@string/newusername"
         android:textColor="#FFF"
-        android:background="@drawable/button_bg"
         android:id="@+id/setusernameB"
         android:layout_marginTop="10dp"></Button>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="60dp"
         android:id="@+id/localR"
-        android:text="Local Record"
+        android:text="@string/localrecord"
         android:textColor="#FFF"
-        android:background="@drawable/button_bg"
-        android:layout_marginTop="10dp"></Button>
+></Button>
+
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="60dp"
         android:id="@+id/logout"
-        android:text="Logout"
-        android:textColor="#FFF"
-        android:background="@drawable/outout"
-        android:layout_marginTop="10dp"></Button>
+        android:text="@string/logout"
+        app:backgroundTint="#d9184b"
+        android:textColor="#FFF"></Button>
 </LinearLayout>
 </LinearLayout>

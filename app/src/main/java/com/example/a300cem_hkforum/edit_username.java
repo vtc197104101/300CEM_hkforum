@@ -43,14 +43,20 @@ public class edit_username extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth = FirebaseAuth.getInstance();
-                FirebaseUser user = mAuth.getCurrentUser();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("users").child(user.getUid());
-                myRef.child("username").setValue(username.getText().toString());
-                Toast.makeText(edit_username.this, "Success!",
-                        Toast.LENGTH_SHORT).show();
-                finish();
+                if (username.getText().length() == 0){
+                    Toast.makeText(edit_username.this, getString(R.string.fail),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("users").child(user.getUid());
+                    myRef.child("username").setValue(username.getText().toString());
+                    Toast.makeText(edit_username.this, getString(R.string.success),
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
             }
         });
     }

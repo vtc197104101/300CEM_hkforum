@@ -60,7 +60,7 @@ public class addPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (title.getText().length() == 0 || content.getText().length() == 0){
-                    Toast.makeText(addPost.this, "Error!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addPost.this, getString(R.string.fail), Toast.LENGTH_SHORT).show();
                 } else {
                     Long tsLong = System.currentTimeMillis()/1000;
                     ts = tsLong.toString();
@@ -70,7 +70,7 @@ public class addPost extends AppCompatActivity {
                     myRef.child("content").setValue(content.getText().toString());
                     myRef.child("timestamp").setValue(ts);
                     myRef.child("user").setValue(username);
-                    Toast.makeText(addPost.this, "Posted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addPost.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
