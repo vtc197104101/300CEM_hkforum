@@ -34,4 +34,11 @@
     <string name="finger">使用指紋登錄</string>
     <string name="reply">回覆成功！</string>
     <string name="blank">請輸入內容！</string>
+    <string name="view">在</string>
+    <string name="record">回帶</string>
+    <string name="alertmessage">你不能再作出任何修改！</string>
+    <string name="logoutS">登出成功！</string>
+    <string name="no">否</string>
+    <string name="yes">是</string>
+    <string name="sure">你確定嗎？</string>
 </resources>

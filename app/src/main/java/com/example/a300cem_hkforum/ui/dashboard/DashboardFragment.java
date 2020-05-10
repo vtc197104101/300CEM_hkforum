@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.a300cem_hkforum.Login;
 import com.example.a300cem_hkforum.MainActivity;
 import com.example.a300cem_hkforum.R;
+import com.example.a300cem_hkforum.Record;
+import com.example.a300cem_hkforum.addPost;
 import com.example.a300cem_hkforum.edit_username;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.dialog.MaterialDialogs;
@@ -112,7 +115,14 @@ public class DashboardFragment extends Fragment {
         creDate = (TextView)root.findViewById(R.id.createDate);
         logout = (Button)root.findViewById(R.id.logout);
         setUsername = (Button)root.findViewById(R.id.setusernameB);
-
+        localRecord = (Button)root.findViewById(R.id.localR);
+        localRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(getActivity(), Record.class);
+                startActivity(a);
+            }
+        });
         setUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,11 +133,24 @@ public class DashboardFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getActivity(), "Logout success!",
-                        Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);
+                MaterialAlertDialogBuilder a = new MaterialAlertDialogBuilder(getActivity(), R.style.AlertDialogTheme);
+                a.setTitle(getString(R.string.sure));
+                a.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        Toast.makeText(getActivity(), getString(R.string.logoutS),
+                                Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), Login.class);
+                        startActivity(intent);
+                    }
+                });
+                        a.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+             a.show();
             }
         });
 //        final TextView textView = root.findViewById(R.id.text_dashboard);

@@ -34,4 +34,11 @@
     <string name="finger">Login using your fingerprint</string>
     <string name="reply">Reply Success!</string>
     <string name="blank">Please enter something!</string>
+    <string name="view">View at</string>
+    <string name="record">Record</string>
+    <string name="alertmessage">You can\'t change the post anymore!</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="logoutS">Logout Success!</string>
+    <string name="sure">Are you sure ?</string>
 </resources>

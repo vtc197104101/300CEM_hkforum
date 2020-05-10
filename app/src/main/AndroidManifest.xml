@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a300cem_hkforum">
+
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".edit_username"></activity>
+        <activity android:name=".Record"></activity>
+        <activity android:name=".edit_username" />
         <activity android:name=".addReply" />
         <activity android:name=".post_detail" />
         <activity android:name=".addPost" />
@@ -21,9 +23,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".Login"
-            android:label="@string/app_name"
-
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

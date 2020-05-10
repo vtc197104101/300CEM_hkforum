@@ -1,52 +1,38 @@
 package com.example.a300cem_hkforum.ui.home;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.a300cem_hkforum.CheckGPS;
+import com.example.a300cem_hkforum.Contact;
+import com.example.a300cem_hkforum.DatabaseHandler;
 import com.example.a300cem_hkforum.MyAdapter;
 import com.example.a300cem_hkforum.Post;
 import com.example.a300cem_hkforum.R;
 import com.example.a300cem_hkforum.RecyclerItemClickListener;
 import com.example.a300cem_hkforum.addPost;
 import com.example.a300cem_hkforum.post_detail;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -73,8 +59,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        CL.setText(CLname);
 
+        CL.setText(CLname);
         if(currentLocation.equals("Hong Kong Island")){
             BG.setImageResource(R.drawable.hki);
         } else if (currentLocation.equals("Kowloon")){
@@ -99,6 +85,7 @@ public class HomeFragment extends Fragment {
                     Collections.reverse(listData);
                     adapter=new MyAdapter(listData, getActivity());
                     rv.setAdapter(adapter);
+
                 }
             }
 
@@ -137,6 +124,10 @@ public class HomeFragment extends Fragment {
                         intent.putExtra("time",listData.get(position).timestamp);
                         intent.putExtra("user",listData.get(position).user);
                         intent.putExtra("CL",currentLocation);
+                        Long tsLong = System.currentTimeMillis()/1000;
+                        int ts = tsLong.intValue();
+                        DatabaseHandler db = new DatabaseHandler(getActivity());
+                        db.addContact(new Contact(ts, listData.get(position).title, listData.get(position).timestamp, listData.get(position).user));
                         startActivity(intent);
                     }
 

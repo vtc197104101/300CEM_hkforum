@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
         if (user != null) {
             Intent intent = new Intent(Login.this,CheckGPS.class);
             startActivity(intent);
-            Toast.makeText(Login.this, getString(R.string.login) + user.getEmail(),
+            Toast.makeText(Login.this, getString(R.string.login) +"  "+ user.getEmail(),
                     Toast.LENGTH_SHORT).show();
         }
         mAuth = FirebaseAuth.getInstance();

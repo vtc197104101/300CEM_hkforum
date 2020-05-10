@@ -64,9 +64,9 @@ public class MyReplyAdapter extends RecyclerView.Adapter<MyReplyAdapter.ViewHold
         String today = DateFormat.format("dd-MM-yyyy", tsLong).toString();
         String date = DateFormat.format("dd-MM-yyyy", cal).toString();
         if (date.equals(today)){
-            replyDate = context.getString(R.string.today) + DateFormat.format(" HH:MM", cal).toString();
+            replyDate = context.getString(R.string.today) + DateFormat.format(" HH:mm", cal).toString();
         } else {
-            replyDate =  DateFormat.format("dd-MM-yyyy HH:MM", cal).toString();
+            replyDate =  DateFormat.format("dd-MM-yyyy HH:mm", cal).toString();
         }
         return replyDate;
     }
